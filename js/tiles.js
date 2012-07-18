@@ -1,5 +1,6 @@
 // Tiles array
 var tiles = [];
+var 
 
 /**
  * Get random integer
@@ -29,8 +30,6 @@ function create_tile(width, max_height) {
 	new_t['width'] = width;
 	new_t['height'] = get_random_integer(max_height);
 	new_t['color'] = get_random_color();
-	new_t['pos_x'] = 0;
-	new_t['pos_y'] = 0;
 	return new_t;
 }
 
@@ -43,6 +42,8 @@ function init_tiles(number_of_tiles, width, max_height) {
 		tiles.push(new_t);
 	}
 }
+
+
 
 
 
