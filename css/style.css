@@ -13,7 +13,7 @@ ul, li {
 }
 
 .tile {
-	position: relative;
+	position: absolute;
 	margin: 10px;	
 }
 

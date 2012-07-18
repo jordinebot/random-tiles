@@ -38,6 +38,7 @@ function create_tile(width, max_height) {
 function init_tiles(number_of_tiles, width, max_height) {
 	for (var i = 0; i < number_of_tiles; i++) {
 		var new_t = create_tile(width, max_height);
+		new_t['id'] = i;
 		tiles.push(new_t);
 	}
 }
@@ -46,6 +47,19 @@ function init_tiles(number_of_tiles, width, max_height) {
  * Calculate absolute coordinates for each tile
  */
 function arrange_tiles() {
-	alert('arrange_tiles');
 	var num_columns = Math.floor($(window).width() / $('.tile').outerWidth(true));
+	var col = 0;
+	var vertical_position = new Array();
+	
+	for (var i = 0; i < num_columns; i++)
+		vertical_position.push(0);
+	
+	$('.tile').each(function(index, element) {
+		
+		$(this).css('left', col * $(this).outerWidth() + 'px');
+		$(this).css('top', vertical_position[col] + 'px');
+		vertical_position[col] += $(this).outerHeight() + 1;
+		col = (col + 1 ) % num_columns;
+    });
+	
 }
