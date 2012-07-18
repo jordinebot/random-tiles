@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('[APP_NAME]', []).
+angular.module('tiles', []).
   config(['$routeProvider', function($routeProvider) {
   $routeProvider.
       when('/', {templateUrl: 'partials/home.html', controller: homeCtrl}).

@@ -5,7 +5,8 @@ var tiles = [];
  * Get random integer
  */
 function get_random_integer(upper_limit) {
-	Math.floor((Math.random() * upper_limit) + 1);
+	var number = Math.floor((Math.random() * upper_limit) + 1);
+	return number;
 }
 
 /**
@@ -23,9 +24,25 @@ function get_random_color() {
 /**
  * Create a random tile
  */
-function create_tile(width) {
-	var new_t = [];
-	new_t.push(width);
-	new_t.push(get_random_integer(300));
-	new_t.push(get_random_color());
+function create_tile(width, max_height) {
+	var new_t = new Array();
+	new_t['width'] = width;
+	new_t['height'] = get_random_integer(max_height);
+	new_t['color'] = get_random_color();
+	new_t['pos_x'] = 0;
+	new_t['pos_y'] = 0;
+	return new_t;
 }
+
+/**
+ * Init tiles array
+ */
+function init_tiles(number_of_tiles, width, max_height) {
+	for (var i = 0; i < number_of_tiles; i++) {
+		var new_t = create_tile(width, max_height);
+		tiles.push(new_t);
+	}
+}
+
+
+
