@@ -42,3 +42,10 @@ function init_tiles(number_of_tiles, width, max_height) {
 	}
 }
 
+/**
+ * Calculate absolute coordinates for each tile
+ */
+function arrange_tiles() {
+	alert('arrange_tiles');
+	var num_columns = Math.floor($(window).width() / $('.tile').outerWidth(true));
+}

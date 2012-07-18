@@ -6,7 +6,6 @@ function homeCtrl($scope, $http, $routeParams) {
 	var actual_height = 500;
 	
 	init_tiles(actual_tiles, actual_width, actual_height);	
-	
 	$scope.tiles = tiles;
 	
 	// Arrange tiles when ready
