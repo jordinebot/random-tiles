@@ -56,9 +56,9 @@ function arrange_tiles() {
 	
 	$('.tile').each(function(index, element) {
 		
-		$(this).css('left', col * $(this).outerWidth() + 'px');
-		$(this).css('top', vertical_position[col] + 'px');
-		vertical_position[col] += $(this).outerHeight() + 1;
+		$(this).css('left', (col + 1)  * 10 + col * $(this).outerWidth() + 'px');
+		$(this).css('top', vertical_position[col] + 10 + 'px');
+		vertical_position[col] += $(this).outerHeight() + 10;
 		col = (col + 1 ) % num_columns;
     });
 	

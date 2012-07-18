@@ -1,7 +1,7 @@
 'use strict';
 
 function homeCtrl($scope, $http, $routeParams) {
-	var actual_tiles = 10;
+	var actual_tiles = 100;
 	var actual_width = 240;
 	var actual_height = 500;
 	
