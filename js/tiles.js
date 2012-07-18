@@ -42,7 +42,3 @@ function init_tiles(number_of_tiles, width, max_height) {
 	}
 }
 
-
-
-
-

@@ -1,14 +1,11 @@
-var actual_tiles = 10;
-var actual_width = 240;
-var actual_height = 500;
+var num_columns;
 
-$(document).ready(function(e) {
+function arrange_tiles () {
 	
-	var num_columns = Math.floor($(window).width() / (actual_width + $('.tile').outerWidth());
+	alert('arrange!');
 	
-	$('.tile').each(function(){
-		
-		
-	});
+	num_columns = Math.floor($(window).width() / $('.tile').outerWidth(true));
 	
-});
+	
+};
+
