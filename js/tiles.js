@@ -1,6 +1,5 @@
 // Tiles array
 var tiles = [];
-var 
 
 /**
  * Get random integer

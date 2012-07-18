@@ -4,6 +4,6 @@ function appCtrl($scope, $http, $routeParams) {
 }
 
 function homeCtrl($scope, $http, $routeParams) {
-	init_tiles(10, 200, 500);
+	init_tiles(actual_tiles, actual_width, actual_height);
 	$scope.tiles = tiles;
 }
