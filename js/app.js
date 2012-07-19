@@ -3,12 +3,12 @@
 /**
  * Main App Module 
  */
-angular.module('tiles', []).directive('myAwesomeDirective', function() {
+angular.module('tiles', []).directive('arrangeTilesDirective', function() {
     return {
-        // directive definition object goes here
+		restrict: 'C',
+		scope: {
+			tiles: 'bind'	
+		},
+		templateUrl: 'partials/home.html'
     };
-}).config(['$routeProvider', function($routeProvider) {
-  $routeProvider.
-      when('/', {templateUrl: 'partials/home.html', controller: homeCtrl}).
-      otherwise({redirectTo: '/'});
-}]);
+});
