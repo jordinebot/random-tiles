@@ -9,7 +9,7 @@ function homeCtrl($scope, $http, $routeParams) {
 	$scope.tiles = tiles;
 	
 	// Arrange tiles when ready
-	//$scope.$on('$viewContentLoaded', arrange_tiles);
+	$scope.$on('$viewContentLoaded', arrange_tiles(BEST_FIT)); // <---- Doesn't work!
 	
 
 }
