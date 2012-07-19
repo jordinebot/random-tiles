@@ -1,6 +1,48 @@
 // Tiles array
 var tiles = [];
 
+// Pseudo-constants
+var LINEAL = 0;
+var BEST_FIT = 1;
+
+// Prototypes
+
+/**
+ * Get array index from value
+ * (Function from Turboid.js)
+ */ 
+Array.prototype.getIndex = function(value) {
+	for(var i=0; i<this.length; i++) {
+		if(this[i]==value) {
+			return i;
+			break;
+		}
+	}
+	return null;
+}
+
+/**
+ * Get lowest value on an array
+ */
+ 
+Array.prototype.lowest = function() {
+	var lowest_value = this[0];
+	for(var i=1; i<this.length; i++) {
+		if(this[i] < lowest_value) {
+			lowest_value = this[i];
+		}
+	}
+	return lowest_value;
+}
+
+/**
+ * Get index from lowest value on array
+ */
+Array.prototype.getIndexOfLowerValue = function() {
+	return this.getIndex(this.lowest());
+}
+
+
 /**
  * Get random integer
  */
@@ -46,7 +88,7 @@ function init_tiles(number_of_tiles, width, max_height) {
 /**
  * Calculate absolute coordinates for each tile
  */
-function arrange_tiles() {
+function arrange_tiles(ARRANGE_METHOD) {
 	var external_gap = 20;
 	var internal_gap  = 10;
 	var num_columns = Math.floor(($(window).width() - external_gap) / ($('.tile').outerWidth(true) + internal_gap));
@@ -55,13 +97,26 @@ function arrange_tiles() {
 	
 	for (var i = 0; i < num_columns; i++)
 		vertical_position.push(0);
-	
-	$('.tile').each(function(index, element) {
-		
-		$(this).css('left', (col + 1)  * 10 + col * $(this).outerWidth() + 'px');
-		$(this).css('top', vertical_position[col] + 10 + 'px');
-		vertical_position[col] += $(this).outerHeight() + 10;
-		col = (col + 1 ) % num_columns;
-    });
-	
+	switch(ARRANGE_METHOD)
+	{
+		case 0:
+			$('.tile').each(function(index, element) {
+				$(this).css('left', (col + 1)  * 10 + col * $(this).outerWidth() + 'px');
+				$(this).css('top', vertical_position[col] + 10 + 'px');
+				vertical_position[col] += $(this).outerHeight() + 10;
+				col = (col + 1 ) % num_columns;
+			});
+			break;
+		case 1:
+			$('.tile').each(function(index, element) { 
+				$(this).css('left', (col + 1)  * 10 + col * $(this).outerWidth() + 'px');
+				$(this).css('top', vertical_position[col	] + 10 + 'px');
+				vertical_position[col] += $(this).outerHeight() + 10;
+				col = vertical_position.getIndexOfLowerValue();
+			});
+			break;
+
+		default:
+			break;
+	}
 }
