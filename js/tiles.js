@@ -47,7 +47,9 @@ function init_tiles(number_of_tiles, width, max_height) {
  * Calculate absolute coordinates for each tile
  */
 function arrange_tiles() {
-	var num_columns = Math.floor($(window).width() / $('.tile').outerWidth(true));
+	var external_gap = 20;
+	var internal_gap  = 10;
+	var num_columns = Math.floor(($(window).width() - external_gap) / ($('.tile').outerWidth(true) + internal_gap));
 	var col = 0;
 	var vertical_position = new Array();
 	
