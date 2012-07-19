@@ -24,7 +24,6 @@ Array.prototype.getIndex = function(value) {
 /**
  * Get lowest value on an array
  */
- 
 Array.prototype.lowest = function() {
 	var lowest_value = this[0];
 	for(var i=1; i<this.length; i++) {
