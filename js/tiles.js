@@ -74,11 +74,42 @@ function create_tile(width, max_height) {
 }
 
 /**
+ * Create a tile filled with an image
+ */
+function create_image_tile(image_URI, width) {
+	var new_t = new Array();
+	var new_i = new Image();
+	var aspect;
+
+	// Calculate image aspect
+	new_i.src = image_URI;
+	aspect = new_i.width / new_i.height;
+
+	new_t['width'] = width;
+	new_t['height'] = (1 / aspect) * width;
+	new_t['color'] = get_random_color();
+	new_t['src'] = image_URI;
+
+	return new_t;
+}
+
+/**
  * Init tiles array
  */
 function init_tiles(number_of_tiles, width, max_height) {
 	for (var i = 0; i < number_of_tiles; i++) {
 		var new_t = create_tile(width, max_height);
+		new_t['id'] = i;
+		tiles.push(new_t);
+	}
+}
+
+/**
+ * Init image tiles array
+ */
+function init_image_tiles(image_URI_array, width) {
+	for (var i = 0; i < image_URI_array.length; i++) {
+		var new_t = create_image_tile(image_URI_array[i], width);
 		new_t['id'] = i;
 		tiles.push(new_t);
 	}
