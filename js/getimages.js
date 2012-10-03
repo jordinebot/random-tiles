@@ -1,13 +1,13 @@
 var SERVICE_TUMBLR = 0;
 
-function get_image_array(json_URI, service) {
+function load_image_array(json_URI, service, width) {
 	
 	var max_images = 100;
 
 	switch(service) {
 
 		case 0: // TUMBLR
-			return parse_tumblr_json(json_URI, max_images);
+			return parse_tumblr_json(json_URI, max_images, width);
 			break;
 
 		default:
@@ -18,34 +18,30 @@ function get_image_array(json_URI, service) {
 
 }
 
-function parse_tumblr_json(json_URI, max_images) {
+function parse_tumblr_json(json_URI, max_images, width) {
 
-	var new_array = new Array();
+	var array = new Array();
 
 	// I add "callback=?" param to avoid "Origin <X> is not allowed by Access-Control-Allow-Origin" error. More info:
-	// http://stackoverflow.com/questions/3595515/xmlhttprequest-error-origin-null-is-not-allowed-by-access-control-allow-origin 
+	// http://stackoverflow.com/questions/3595515/xmlhttprequest-error-origin-null-is-not-allowed-by-access-control-allow-origin
 
-	$.ajax({
-        url: json_URI + '&callback=?',
-        async: true,
-        dataType: 'json',
-        success: function(data) {
+	$.getJSON(json_URI + '&callback=?', function(data){
 
-	        for (var i = 0; i < data.response.length; i++) {
+		for (var i = 0; i < data.response.length; i++) {
 
-				var item = new Array();
+			var item = new Array();
 
-				item.push(data.response[i].photos[0].original_size.url);
-				item.push(data.response[i].photos[0].original_size.width);
-				item.push(data.response[i].photos[0].original_size.height);
+			item.push(data.response[i].photos[0].original_size.url);
+			item.push(data.response[i].photos[0].original_size.width);
+			item.push(data.response[i].photos[0].original_size.height);
 
-				new_array.push(item);
-			}
+			array.push(item);
 
 		}
 
-	});
+		// Once array is filled, we build tiles.
+		init_image_tiles(array, width)
 
-	alert(new_array);
+	});
 
 }

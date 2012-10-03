@@ -109,7 +109,7 @@ function init_tiles(number_of_tiles, width, max_height) {
  */
 function init_image_tiles(image_URI_array, width) {
 	for (var i = 0; i < image_URI_array.length; i++) {
-		var new_t = create_image_tile(image_URI_array[i], width);
+		var new_t = create_image_tile(image_URI_array[i][0], width);
 		new_t['id'] = i;
 		tiles.push(new_t);
 	}

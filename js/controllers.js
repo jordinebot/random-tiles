@@ -22,13 +22,12 @@ function imgHomeCtrl($scope, $http, $routeParams) {
 	var tag = 'landscape';
 	var image_JSON_URI = 'http://api.tumblr.com/v2/tagged?tag=' + tag + '&api_key=' + tumblr_API_KEY;
 
-	var image_array = get_image_array(image_JSON_URI, SERVICE_TUMBLR);
-
-	
+	load_image_array(image_JSON_URI, SERVICE_TUMBLR, actual_width);
 	
 	$scope.tiles = tiles;
 	
 	// Arrange tiles when ready
+	$scope.$on('$viewContentLoaded', $scope.tiles = tiles);
 	$scope.$on('$viewContentLoaded', arrange_tiles(BEST_FIT)); // <---- Doesn't work!
 	
 }
