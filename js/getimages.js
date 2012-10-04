@@ -35,6 +35,7 @@ function jquery_parse_tumblr_json(json_URI, max_images, width) {
 			item.push(data.response[i].photos[0].original_size.url);
 			item.push(data.response[i].photos[0].original_size.width);
 			item.push(data.response[i].photos[0].original_size.height);
+			item.push(data.response[i].timestamp);
 
 			array.push(item);
 
@@ -59,7 +60,8 @@ function ng_parse_tumblr_json(data) {
 		item.push(data.response[i].photos[0].original_size.url);
 		item.push(data.response[i].photos[0].original_size.width);
 		item.push(data.response[i].photos[0].original_size.height);
-
+		item.push(data.response[i].timestamp);
+		
 		array.push(item);
 
 	}
