@@ -7,7 +7,7 @@ function load_image_array(json_URI, service, width) {
 	switch(service) {
 
 		case 0: // TUMBLR
-			return parse_tumblr_json(json_URI, max_images, width);
+			return ng_parse_tumblr_json(json_URI, max_images, width);
 			break;
 
 		default:
@@ -18,7 +18,8 @@ function load_image_array(json_URI, service, width) {
 
 }
 
-function parse_tumblr_json(json_URI, max_images, width) {
+// JQuery Ajax version
+function jquery_parse_tumblr_json(json_URI, max_images, width) {
 
 	var array = new Array();
 
@@ -45,3 +46,28 @@ function parse_tumblr_json(json_URI, max_images, width) {
 	});
 
 }
+
+// Angular Ajax version
+function ng_parse_tumblr_json(data) {
+
+	var array = new Array();
+
+	for (var i = 0; i < data.response.length; i++) {
+
+		var item = new Array();
+
+		item.push(data.response[i].photos[0].original_size.url);
+		item.push(data.response[i].photos[0].original_size.width);
+		item.push(data.response[i].photos[0].original_size.height);
+
+		array.push(item);
+
+	}
+
+	return array;
+
+}
+
+
+
+

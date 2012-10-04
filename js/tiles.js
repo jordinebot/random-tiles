@@ -76,17 +76,13 @@ function create_tile(width, max_height) {
 /**
  * Create a tile filled with an image
  */
-function create_image_tile(image_URI, width) {
+function create_image_tile(image_URI, actual_width, actual_height, fit_width) {
 	var new_t = new Array();
-	var new_i = new Image();
-	var aspect;
 
-	// Calculate image aspect
-	new_i.src = image_URI;
-	aspect = new_i.width / new_i.height;
+	var fit_height = actual_height * (fit_width / actual_width);
 
-	new_t['width'] = width;
-	new_t['height'] = (1 / aspect) * width;
+	new_t['width'] = fit_width;
+	new_t['height'] = fit_height;
 	new_t['color'] = get_random_color();
 	new_t['src'] = image_URI;
 
@@ -109,7 +105,7 @@ function init_tiles(number_of_tiles, width, max_height) {
  */
 function init_image_tiles(image_URI_array, width) {
 	for (var i = 0; i < image_URI_array.length; i++) {
-		var new_t = create_image_tile(image_URI_array[i][0], width);
+		var new_t = create_image_tile(image_URI_array[i][0], image_URI_array[i][1], image_URI_array[i][2], width);
 		new_t['id'] = i;
 		tiles.push(new_t);
 	}
