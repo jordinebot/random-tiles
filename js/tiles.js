@@ -41,6 +41,15 @@ Array.prototype.getIndexOfLowerValue = function() {
 	return this.getIndex(this.lowest());
 }
 
+/**
+ * Get last item on array
+ */
+if(!Array.prototype.last) {
+    Array.prototype.last = function() {
+        return this[this.length - 1];
+    }
+}
+
 
 /**
  * Get random integer

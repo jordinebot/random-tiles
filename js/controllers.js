@@ -1,5 +1,8 @@
 'use strict';
 
+
+
+
 function homeCtrl($scope, $http, $routeParams) {
 	var actual_tiles = 200;
 	var actual_width = 100;
@@ -22,17 +25,29 @@ function imgHomeCtrl($scope, $http, $routeParams) {
 	var tag = 'landscape';
 	var image_JSON_URI = 'http://api.tumblr.com/v2/tagged?tag=' + tag + '&api_key=' + tumblr_API_KEY + '&callback=?';
 
+	$scope.timestamp = '';
+
+	$scope.tiles = [];
+
+	$scope.load_data = function() {
+		alert("loading");
+		for (var i = 0; i < 1; i++) {
+
+		    $.getJSON(image_JSON_URI + '&before=' + $scope.timestamp, function(json) {
+
+				$scope.$apply(function(){
+					var image_array = ng_parse_tumblr_json(json);
+					init_image_tiles(image_array, actual_width);
+					$scope.tiles = $scope.tiles.concat(tiles);
+				});
+
+				$scope.timestamp = tiles.last()['timestamp'];
+
+			});	
+
+		}
+	}
 	
-    $.getJSON(image_JSON_URI, function(json) {
-		$scope.$apply(function(){
-			var image_array = ng_parse_tumblr_json(json);
-			init_image_tiles(image_array, actual_width);
-			$scope.tiles = tiles;
-		});
-	});	
-	
-	
-	// Arrange tiles when ready
-	$scope.$on('$viewContentLoaded', arrange_tiles(BEST_FIT)); // <---- Doesn't work!
+	$scope.load_data();
 	
 }
