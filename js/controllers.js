@@ -2,10 +2,9 @@
 
 
 
-
 function homeCtrl($scope, $http, $routeParams) {
 	var actual_tiles = 200;
-	var actual_width = 100;
+	var actual_width = 240;
 	var actual_height = 400;
 	
 	init_tiles(actual_tiles, actual_width, actual_height);	
@@ -26,11 +25,9 @@ function imgHomeCtrl($scope, $http, $routeParams) {
 	var image_JSON_URI = 'http://api.tumblr.com/v2/tagged?tag=' + tag + '&api_key=' + tumblr_API_KEY + '&callback=?';
 
 	$scope.timestamp = '';
-
 	$scope.tiles = [];
 
 	$scope.load_data = function() {
-		alert("loading");
 		for (var i = 0; i < 1; i++) {
 
 		    $.getJSON(image_JSON_URI + '&before=' + $scope.timestamp, function(json) {
@@ -49,5 +46,5 @@ function imgHomeCtrl($scope, $http, $routeParams) {
 	}
 	
 	$scope.load_data();
-	
+
 }
