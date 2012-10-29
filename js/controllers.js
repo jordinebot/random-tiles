@@ -17,7 +17,7 @@ function homeCtrl($scope, $http, $routeParams) {
 
 function imgHomeCtrl($scope, $http, $routeParams) {
 	var actual_tiles = 100;
-	var actual_width = 240;
+	var actual_width = 320;
 	var actual_height = 500;
 
 	var tumblr_API_KEY = 'PyezS3Q4Smivb24d9SzZGYSuhMNPQUhMsVetMC9ksuGPkK1BTt';
